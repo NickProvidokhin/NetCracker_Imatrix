@@ -45,5 +45,38 @@ public interface IMatrixWorker {
      * @return result matrix
      */
     public double[][] multiply(double[][] m1, double[][] m2);
+    /**
+     * This method compares size of columns and size of kines in matrix
+     * return true when sizes  equals
+     *
+     * @param m1 -  matrix
+     * @return true if size of columns and size of lines  matrix equals other false
+     */
+    public boolean checkSquare(double[][] m1);
+    /**
+     * This method compares size of columns and size of kines in matrix
+     * return true when sizes  equals
+     *
+     * @param m1 -  matrix
+     * @return true if size of columns and size of lines  matrix equals other false
+     */
+    public double calculateDeterminant(double[][] m1);
+    /**
+     * This recursive method calculate determinant for matrix
+     *      * return determinant
+     *
+     * @param m1 -  matrix
+     * @return  determinant
+     */
+    public double [][] minorMatrix(double[][] m1, int line, int column);
+    /**
+     * get Minor of matrix
+     *
+     * @param m1 -  matrix
+     * @param line - the line is delete from matrix
+     * @param column the column is delete from matrix
+     * @return minor of matrix
+     */
+
 
 }

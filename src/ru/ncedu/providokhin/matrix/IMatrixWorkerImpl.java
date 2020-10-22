@@ -69,4 +69,59 @@ public class IMatrixWorkerImpl implements IMatrixWorker {
         }
         return null;
     }
+
+    @Override
+    public boolean checkSquare(double[][] m1) {
+        for (int i = 0; i < m1.length; i++) {
+            if (m1.length != m1[i].length) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public double calculateDeterminant(double[][] m1) {
+        double result = 0;
+        if (checkSquare(m1)) {
+            if (m1.length == 1) {
+                return m1[0][0];
+
+            }
+            if (m1.length == 2) {
+                result += m1[0][0] * m1[1][1] - m1[0][1] * m1[1][0];
+            } else {
+                for (int i = 0; i < m1.length; i++) {
+                    //double [][] minor = new double[][];
+                    result += Math.pow(-1, i) * m1[0][i] * calculateDeterminant(minorMatrix(m1, 0, i));
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public double[][] minorMatrix(double[][] m1, int line, int column) {
+        double[][] minor = new double[m1.length - 1][m1.length - 1];
+        int mi = 0;
+        int mj = 0;
+        for (int i = 0; i <= minor.length; i++) {
+            mj = 0;
+            for (int j = 0; j <= minor.length; j++) {
+                if (i == line) {
+                    mi = 1;
+                } else {
+                    if (j == column) {
+                        mj = 1;
+                    } else {
+                        minor[i - mi][j - mj] = m1[i][j];
+                    }
+                }
+            }
+        }
+
+        return minor;
+
+    }
+
 }
